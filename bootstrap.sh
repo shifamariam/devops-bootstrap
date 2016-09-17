@@ -93,8 +93,15 @@ bt_public_ip=`dig +short myip.opendns.com @resolver1.opendns.com` || bootstrap_h
 bootstrap_logger "Installing Curl"
 sudo apt-get -y install curl || bootstrap_handler $BT_Error "Unable to Install curl. Please fix the issue and try again." $BT_Die
 
-bootstrap_logger "Installing and configuring ansible on localhost"
-sudo apt-get -y install ansible || bootstrap_handler $BT_Error "Unable to Install ansible. Please fix the issue and try again." $BT_Die
+bootstrap_logger "Installing and configuring python modules"
+# sudo apt-get -y install ansible || bootstrap_handler $BT_Error "Unable to Install ansible. Please fix the issue and try again." $BT_Die
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-setuptools python-apt python-pycurl || bootstrap_handler $BT_Error "Unable to Install Python modules." $BT_Die
+
+bootstrap_logger "Installing and configuring PIP python package installer."
+sudo easy_install pip || bootstrap_handler $BT_Error "Unable to Install Python PIP." $BT_Die
+
+bootstrap_logger "Installing and configuring ansible 1.5.4"
+sudo pip install ansible==1.5.4 || bootstrap_handler $BT_Error "Unable to Install ansible." $BT_Die
 
 sudo sed -i '1i localhost' /etc/ansible/hosts
 BT_current_user=`whoami`
