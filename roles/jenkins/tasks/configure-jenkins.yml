@@ -22,23 +22,23 @@
   service: name=jenkins state=restarted
   when: jenkins_init_prefix.changed
   
-- name: Create custom init scripts directory.
-  file:
-    path: /var/lib/jenkins/init.groovy.d
-    state: directory
-    owner: jenkins
-    group: jenkins
-    mode: 0775
+# - name: Create custom init scripts directory.
+  # file:
+    # path: /var/lib/jenkins/init.groovy.d
+    # state: directory
+    # owner: jenkins
+    # group: jenkins
+    # mode: 0775
 
-- name: Configure Jenkins default users.
-  template:
-    src: basic-security.groovy
-    dest: /var/lib/jenkins/init.groovy.d/basic-security.groovy
-    owner: jenkins
-    group: jenkins
-    mode: 0775
-  register: jenkins_users_config
+# - name: Configure Jenkins default users.
+  # template:
+    # src: basic-security.groovy
+    # dest: /var/lib/jenkins/init.groovy.d/basic-security.groovy
+    # owner: jenkins
+    # group: jenkins
+    # mode: 0775
+  # register: jenkins_users_config
 
-- name: Immediately restart Jenkins on http or user changes.
-  service: name=jenkins state=restarted
-  when: jenkins_users_config.changed or jenkins_http_config.changed
+# - name: Immediately restart Jenkins on http or user changes.
+  # service: name=jenkins state=restarted
+  # when: jenkins_users_config.changed or jenkins_http_config.changed
