@@ -95,7 +95,7 @@ sudo apt-get -y install curl || bootstrap_handler $BT_Error "Unable to Install c
 
 bootstrap_logger "Installing and configuring python modules"
 # sudo apt-get -y install ansible || bootstrap_handler $BT_Error "Unable to Install ansible. Please fix the issue and try again." $BT_Die
-sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-setuptools python-apt python-pycurl || bootstrap_handler $BT_Error "Unable to Install Python modules." $BT_Die
+sudo apt-get -y install build-essential libssl-dev libffi-dev python-dev python-setuptools python-apt python-pycurl || bootstrap_handler $BT_Error "Unable to Install Python modules." $BT_Die
 
 bootstrap_logger "Installing and configuring PIP python package installer."
 sudo easy_install pip || bootstrap_handler $BT_Error "Unable to Install Python PIP." $BT_Die
@@ -113,7 +113,7 @@ if [ ! -f $BT_KeyPath/$BT_Ssh_KeyName ]; then
 fi
 
 bootstrap_logger "Ensure ansible is installed and configured"
-ansible all -m ping --private-key=$BT_KeyPath/$BT_Ssh_KeyName || bootstrap_handler $BT_Error "ansible -vvvv all -m ping --private-key=$BT_KeyPath/$BT_Ssh_KeyName" $BT_Die
+ansible all -i hosts -m ping --private-key=$BT_KeyPath/$BT_Ssh_KeyName || bootstrap_handler $BT_Error "ansible -vvvv all -m ping --private-key=$BT_KeyPath/$BT_Ssh_KeyName" $BT_Die
 
 bootstrap_handler $BT_OK "\e[32m Ansible successfully installed and configured. \e[0m"; 
 
