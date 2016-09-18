@@ -42,7 +42,7 @@
     
     # - role: sonar
         
-    - role: jenkins
+    - role: jenkins-2
     
   # tasks:
     # - name: Install Docker 
