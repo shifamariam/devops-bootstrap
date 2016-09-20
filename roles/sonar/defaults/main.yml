@@ -16,7 +16,7 @@ workspace: /tmp
 sonar_version: 4.5.6
 #sonar_version: 5.6.1
 sonar_download_url: "http://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-{{ sonar_version }}.zip"
-sonar_download_url: "https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.0.zip"
+#sonar_download_url: "https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.0.zip"
 #sonar_version_directory: "sonarqube-6.0"
 sonar_version_directory: "sonarqube-{{ sonar_version }}"
 
