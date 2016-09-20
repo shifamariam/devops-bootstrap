@@ -19,20 +19,20 @@
     mv /usr/local/{{ sonar_version_directory }} /usr/local/sonar
   ignore_errors: True
     
-- name: Start sonar
-  shell: sh /usr/local/sonar/bin/linux-x86-64/sonar.sh console > /dev/null 2>&1 &
-  ignore_errors: True
-  
-- name: Ensure Sonar is running and set to stop on boot.
-  service: name=sonar state=stop enabled=yes
-  register: stop_failed
-  ignore_errors: True
-  
-- name: Ensure Sonar is running and set to stop on boot - retry
-  shell: sh /usr/local/sonar/bin/linux-x86-64/sonar.sh stop
-  when: stop_failed|failed
-  ignore_errors: True
-  
+#- name: Start sonar
+#  shell: sh /usr/local/sonar/bin/linux-x86-64/sonar.sh console > /dev/null 2>&1 &
+#  ignore_errors: True
+#  
+#- name: Ensure Sonar is running and set to stop on boot.
+#  service: name=sonar state=stop enabled=yes
+#  register: stop_failed
+#  ignore_errors: True
+#  
+#- name: Ensure Sonar is running and set to stop on boot - retry
+#  shell: sh /usr/local/sonar/bin/linux-x86-64/sonar.sh stop
+#  when: stop_failed|failed
+#  ignore_errors: True
+#  
 - name: Create a database for Sonar.
   mysql_db:
     name: "{{ sonar_mysql_database }}"
@@ -77,7 +77,7 @@
   ignore_errors: True
   
 - name: Ensure Sonar is running and set to start on boot - retry
-  shell: sh /usr/local/sonar/bin/linux-x86-64/sonar.sh console > /dev/null 2>&1 &
+  shell: sh /usr/local/sonar/bin/linux-x86-64/sonar.sh start
   when: start_failed|failed
   ignore_errors: True
 
